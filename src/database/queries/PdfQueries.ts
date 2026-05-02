@@ -2,12 +2,12 @@ export const CREATE_TABLE = `
     CREATE TABLE IF NOT EXISTS pdf (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
-        file_name TEXT NOT NULL
+        file_id TEXT NOT NULL
     );
 `;
 
 export const INSERT = `
-    INSERT INTO pdf (title, file_name) VALUES
+    INSERT INTO pdf (title, file_id) VALUES
     (?, ?);
 `;
 

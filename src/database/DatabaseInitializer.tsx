@@ -58,7 +58,7 @@ export default function DatabaseInitializer({ onReady }: Props) {
                 for (const pdf_file of pdf) {
                   await db.runAsync(PdfQueries.INSERT, [
                     pdf_file.title,
-                    pdf_file.file_name
+                    pdf_file.file_id
                   ]);
                 }
 

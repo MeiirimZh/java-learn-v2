@@ -1,51 +1,25 @@
 import { View, ActivityIndicator } from 'react-native';
 import AppText from './AppText';
 import { WebView } from 'react-native-webview';
-import { Asset } from 'expo-asset';
-import { useEffect, useState } from 'react';
 
 import { theme } from '../src/theme';
 
 type Props = {
-    path: number;
+    fileId: string;
 };
 
-export default function PdfView({ path }: Props) {
-    const [localUri, setLocalUri] = useState<string | null>(null);
-    const [loading, setLoading] = useState(true);
+export default function PdfView({ fileId }: Props) {
 
-    useEffect(() => {
-        const loadPdf = async () => {
-            try {
-                const asset = Asset.fromModule(path);
-                await asset.downloadAsync();
-                setLocalUri(asset.localUri!);
-            } catch (error) {
-                console.error("Error loading PDF:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        loadPdf();
-    }, [path]);
-
-    if (loading) {
-        return (
-            <ActivityIndicator size="large" color={theme.colors.primary} />
-        );
-    }
-
-    if (!localUri) {
+    if (!fileId) {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <AppText>Не удалось загрузить файл PDF</AppText>
+                <AppText>Не указан файл PDF</AppText>
             </View>
         );
     }
 
-    // ⚠️ Важно: используем Google Docs Viewer
-    const viewerUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(localUri)}`;
+    const pdfUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+    const viewerUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(pdfUrl)}`;
 
     return (
         <View style={{ flex: 1 }}>
@@ -53,9 +27,14 @@ export default function PdfView({ path }: Props) {
                 source={{ uri: viewerUrl }}
                 style={{ flex: 1 }}
                 startInLoadingState
+                javaScriptEnabled
+                domStorageEnabled
                 renderLoading={() => (
                     <ActivityIndicator size="large" color={theme.colors.primary} />
                 )}
+                onError={(e) => {
+                    console.error('WebView error:', e.nativeEvent);
+                }}
             />
         </View>
     );
