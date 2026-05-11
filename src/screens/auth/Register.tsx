@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { View, TextInput, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import AppText from "../../../components/AppText";
@@ -17,6 +19,8 @@ import Toast from "react-native-toast-message";
 type Props = StackScreenProps<AuthStackParamList, "Register">;
 
 export default function Register({ navigation }: Props) {
+    const insets = useSafeAreaInsets();
+
     const { register } = useAuth();
     const [ name, setName ] = useState<string>("");
     const [ surname, setSurname ] = useState<string>("");
@@ -24,6 +28,9 @@ export default function Register({ navigation }: Props) {
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ loading, setLoading ] = useState(false);
+
+    const [isKzEnabled, setIsKzEnabled] = useState(false);
+    const [isRuEnabled, setIsRuEnabled] = useState(true);
 
     const handleRegister = async () => {
         setLoading(true);
@@ -68,6 +75,37 @@ export default function Register({ navigation }: Props) {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        const getAndSetLang = async () => {
+            const lang = await AsyncStorage.getItem("lang");
+
+            if (lang === "kz") {
+                setIsKzEnabled(true);
+                setIsRuEnabled(false);
+            }
+            else if (lang === "ru") {
+                setIsRuEnabled(true);
+                setIsKzEnabled(false);
+            }
+        };
+
+        getAndSetLang();
+    }, []);
+
+    useEffect(() => {
+        const setLang = async (lang: string) => {
+            await AsyncStorage.setItem("lang", lang);
+        };
+
+        if (isKzEnabled) {
+            setLang("kz");
+        }
+
+        if (isRuEnabled) {
+            setLang("ru");
+        }
+    }, [isKzEnabled, isRuEnabled]);
 
     return (
         <View style={ styles.main }>
@@ -127,6 +165,27 @@ export default function Register({ navigation }: Props) {
                     </View>
                 </View>
             </View>
+            <View style={[ styles.languageMenu, { paddingBottom: insets.bottom } ]}>
+                <AppText style={{ alignSelf: 'center' }}>Выберите язык:</AppText>
+                <View style={ styles.languagesList }>
+                    <TouchableOpacity style={[ styles.languageButton, styles.shadow,
+                        { backgroundColor: isKzEnabled ? theme.colors.bgDark : theme.colors.bgLight }]}
+                        onPress={() => {
+                            setIsKzEnabled(true)
+                            setIsRuEnabled(false)
+                            }}>
+                        <AppText>Казахский</AppText>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[ styles.languageButton, styles.shadow,
+                        { backgroundColor: isRuEnabled ? theme.colors.bgDark : theme.colors.bgLight }]}
+                        onPress={() => {
+                            setIsRuEnabled(true)
+                            setIsKzEnabled(false)
+                            }}>
+                        <AppText>Русский</AppText>
+                    </TouchableOpacity>
+                </View>
+            </View>
         </View>
   );
 }
@@ -156,6 +215,17 @@ const styles = StyleSheet.create({
 
         alignSelf: 'center'
     },
+    languageMenu: {
+        gap: theme.spacing.sm,
+        position: 'absolute',
+        bottom: theme.spacing.md,
+
+        alignSelf: 'center'
+    },
+    languagesList: {
+        flexDirection: 'row',
+        gap: theme.spacing.md
+    },
 
     textInput: {
         backgroundColor: theme.colors.bgLight,
@@ -168,6 +238,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
         backgroundColor: theme.colors.primary,
+
+        borderRadius: 10,
+
+        padding: theme.spacing.md
+    },
+    languageButton: {
+        alignItems: 'center',
 
         borderRadius: 10,
 

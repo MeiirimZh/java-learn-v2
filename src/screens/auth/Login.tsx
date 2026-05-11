@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { View, TextInput, TouchableOpacity, StyleSheet, Alert, StatusBar } from "react-native";
 import AppText from "../../../components/AppText";
@@ -27,6 +28,37 @@ export default function Login({ navigation }: Props) {
 
     const [isKzEnabled, setIsKzEnabled] = useState(false);
     const [isRuEnabled, setIsRuEnabled] = useState(true);
+
+    useEffect(() => {
+        const getAndSetLang = async () => {
+            const lang = await AsyncStorage.getItem("lang");
+
+            if (lang === "kz") {
+                setIsKzEnabled(true);
+                setIsRuEnabled(false);
+            }
+            else if (lang === "ru") {
+                setIsRuEnabled(true);
+                setIsKzEnabled(false);
+            }
+        };
+
+        getAndSetLang();
+    }, []);
+
+    useEffect(() => {
+        const setLang = async (lang: string) => {
+            await AsyncStorage.setItem("lang", lang);
+        };
+
+        if (isKzEnabled) {
+            setLang("kz");
+        }
+
+        if (isRuEnabled) {
+            setLang("ru");
+        }
+    }, [isKzEnabled, isRuEnabled]);
 
     const handleLogin = async () => {
         setLoading(true);
@@ -104,7 +136,7 @@ export default function Login({ navigation }: Props) {
             <View style={[ styles.languageMenu, { paddingBottom: insets.bottom } ]}>
                 <AppText style={{ alignSelf: 'center' }}>Выберите язык:</AppText>
                 <View style={ styles.languagesList }>
-                    <TouchableOpacity style={[ styles.languageButton, 
+                    <TouchableOpacity style={[ styles.languageButton, styles.shadow, 
                         { backgroundColor: isKzEnabled ? theme.colors.bgDark : theme.colors.bgLight }]}
                         onPress={() => {
                             setIsKzEnabled(true)
@@ -112,7 +144,7 @@ export default function Login({ navigation }: Props) {
                             }}>
                         <AppText>Казахский</AppText>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[ styles.languageButton,
+                    <TouchableOpacity style={[ styles.languageButton, styles.shadow,
                         { backgroundColor: isRuEnabled ? theme.colors.bgDark : theme.colors.bgLight }]}
                         onPress={() => {
                             setIsRuEnabled(true)
