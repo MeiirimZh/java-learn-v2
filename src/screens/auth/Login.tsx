@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { View, TextInput, TouchableOpacity, StyleSheet, Alert, StatusBar } from "react-native";
 import AppText from "../../../components/AppText";
@@ -17,10 +18,15 @@ import Toast from "react-native-toast-message";
 type Props = StackScreenProps<AuthStackParamList, "Login">;
 
 export default function Login({ navigation }: Props) {
+    const insets = useSafeAreaInsets();
+
     const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+
+    const [isKzEnabled, setIsKzEnabled] = useState(false);
+    const [isRuEnabled, setIsRuEnabled] = useState(true);
 
     const handleLogin = async () => {
         setLoading(true);
@@ -95,6 +101,27 @@ export default function Login({ navigation }: Props) {
                     </View>
                 </View>
             </View>
+            <View style={[ styles.languageMenu, { paddingBottom: insets.bottom } ]}>
+                <AppText style={{ alignSelf: 'center' }}>Выберите язык:</AppText>
+                <View style={ styles.languagesList }>
+                    <TouchableOpacity style={[ styles.languageButton, 
+                        { backgroundColor: isKzEnabled ? theme.colors.bgDark : theme.colors.bgLight }]}
+                        onPress={() => {
+                            setIsKzEnabled(true)
+                            setIsRuEnabled(false)
+                            }}>
+                        <AppText>Казахский</AppText>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[ styles.languageButton,
+                        { backgroundColor: isRuEnabled ? theme.colors.bgDark : theme.colors.bgLight }]}
+                        onPress={() => {
+                            setIsRuEnabled(true)
+                            setIsKzEnabled(false)
+                            }}>
+                        <AppText>Русский</AppText>
+                    </TouchableOpacity>
+                </View>
+            </View>
 
             <StatusBar barStyle="dark-content" />
         </View>
@@ -126,6 +153,17 @@ const styles = StyleSheet.create({
 
         alignSelf: 'center'
     },
+    languageMenu: {
+        gap: theme.spacing.sm,
+        position: 'absolute',
+        bottom: theme.spacing.md,
+
+        alignSelf: 'center'
+    },
+    languagesList: {
+        flexDirection: 'row',
+        gap: theme.spacing.md
+    },
 
     textInput: {
         backgroundColor: theme.colors.bgLight,
@@ -138,6 +176,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
         backgroundColor: theme.colors.primary,
+
+        borderRadius: 10,
+
+        padding: theme.spacing.md
+    },
+    languageButton: {
+        alignItems: 'center',
 
         borderRadius: 10,
 
