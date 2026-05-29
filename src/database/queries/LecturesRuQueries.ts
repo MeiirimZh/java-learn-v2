@@ -1,5 +1,5 @@
 export const CREATE_TABLE = `
-    CREATE TABLE IF NOT EXISTS lectures (
+    CREATE TABLE IF NOT EXISTS lectures_ru (
         id INTEGER PRIMARY KEY,
         title TEXT NOT NULL,
         course_id INTEGER REFERENCES courses(id),
@@ -11,10 +11,10 @@ export const CREATE_TABLE = `
 `;
 
 export const INSERT = `
-    INSERT INTO lectures VALUES
+    INSERT INTO lectures_ru VALUES
     (?, ?, ?, ?, ?, ?, ?);
 `;
 
 export const DROP_TABLE = `
-    DROP TABLE IF EXISTS lectures;
+    DROP TABLE IF EXISTS lectures_ru;
 `;

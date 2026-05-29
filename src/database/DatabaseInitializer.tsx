@@ -1,13 +1,13 @@
 import { SQLiteProvider } from "expo-sqlite";
 
-import * as LecturesQueries from "./queries/LecturesQueries";
+import * as LecturesRuQueries from "./queries/LecturesRuQueries";
 import * as CoursesQueries from "./queries/CoursesQueries";
 import * as PdfQueries from "./queries/PdfQueries";
 import * as LabWorksQueries from "./queries/LabWorksQueries";
 import * as TestsQueries from "./queries/TestsQueries";
 
 import { courses } from "../../assets/materials/courses";
-import { lectures } from "../../assets/materials/lectures";
+import { lectures_ru } from "../../assets/materials/lectures_ru";
 import { pdf } from "../../assets/materials/pdf";
 import { labWorks } from "../../assets/materials/labWorks";
 import { tests } from "../../assets/materials/tests";
@@ -39,10 +39,10 @@ export default function DatabaseInitializer({ onReady }: Props) {
                   ]);
                 }
 
-                await db.execAsync(LecturesQueries.DROP_TABLE);
-                await db.execAsync(LecturesQueries.CREATE_TABLE);
-                for (const lecture of lectures) {
-                  await db.runAsync(LecturesQueries.INSERT, [
+                await db.execAsync(LecturesRuQueries.DROP_TABLE);
+                await db.execAsync(LecturesRuQueries.CREATE_TABLE);
+                for (const lecture of lectures_ru) {
+                  await db.runAsync(LecturesRuQueries.INSERT, [
                     lecture.id,
                     lecture.title,
                     lecture.course_id,
