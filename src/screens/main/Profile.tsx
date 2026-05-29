@@ -28,7 +28,7 @@ export default function Profile() {
     const [ passedLabWorks, setPassedLabWorks ] = useState<number[]>([]);
     const [ passedTests, setPassedTests ] = useState<number[]>([]);
 
-    const { lectures } = useLectures();
+    const { lectures } = useLectures("ru");
     const { labWorks } = useLabWorks();
     const { tests } = useTests();
 

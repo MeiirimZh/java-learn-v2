@@ -1,16 +1,29 @@
 import { useState, useEffect } from "react";
 import { useSQLiteContext } from "expo-sqlite";
 
-import { Lecture } from "../../types";
+import { Lecture, Language } from "../../types";
 
-const useLectures = () => {
+const useLectures = (lang: Language) => {
     const [ lectures, setLectures ] = useState<Lecture[]>([]);
     const [ loading, setLoading ] = useState<boolean>(true);
     const db = useSQLiteContext();
     
     const loadLectures = async () => {
         try {
-            const results = await db.getAllAsync<Lecture>("SELECT * FROM lectures ORDER BY id;");
+            let query;
+
+            switch (lang) {
+                case "ru":
+                    query = "SELECT * FROM lectures_ru ORDER BY id;";
+                    break;
+                case "kz":
+                    query = "SELECT * FROM lectures_kz ORDER BY id;";
+                    break;
+                default:
+                    throw new TypeError("Invalid language");
+            }
+
+            const results = await db.getAllAsync<Lecture>(query);
             setLectures(results);
         }
         catch (error) {

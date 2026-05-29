@@ -18,7 +18,7 @@ import { db } from "../../firebase/firebase";
 type Props = StackScreenProps<LecturesStackParamList, "LecturesList">;
 
 export default function LecturesList({ navigation }: Props) {
-    const { lectures } = useLectures();
+    const { lectures } = useLectures("ru");
     const { courses } = useCourses();
 
     const [ passedLectures, setPassedLectures ] = useState<number[]>([]);

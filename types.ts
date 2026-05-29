@@ -50,3 +50,5 @@ const names = [
 ] as const;
 
 export type PdfFileName = typeof names[number];
+
+export type Language = "ru" | "kz";

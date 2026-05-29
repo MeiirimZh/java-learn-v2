@@ -142,7 +142,7 @@ export default function Login({ navigation }: Props) {
                             setIsKzEnabled(true)
                             setIsRuEnabled(false)
                             }}>
-                        <AppText>Казахский</AppText>
+                        <AppText>Қазақша</AppText>
                     </TouchableOpacity>
                     <TouchableOpacity style={[ styles.languageButton, styles.shadow,
                         { backgroundColor: isRuEnabled ? theme.colors.bgDark : theme.colors.bgLight }]}
