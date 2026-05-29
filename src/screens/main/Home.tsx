@@ -36,7 +36,7 @@ export default function Home() {
                     style={ [styles.authorName, { marginTop: 70 }] }>
                         {"Абдрахманова Светлана\nВладимировна"}
                 </AppText>
-                <AppText style={{ color: theme.colors.textMuted }}>Информационные ресурсы</AppText>
+                <AppText style={{ color: theme.colors.textMuted }}>Программирование на Java</AppText>
             </View>
 
             <HorizontalDivider style={{ width: width - theme.spacing.lg * 2, marginBottom: theme.spacing.lg }} />
