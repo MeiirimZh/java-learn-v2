@@ -1,4 +1,4 @@
-import { Lecture } from "../../types";
+import { Lecture } from "../../../types";
 
 const description = `
 У компьютера пальцев нет, но есть два состояния: условно «ток идет» и «ток не идет», 

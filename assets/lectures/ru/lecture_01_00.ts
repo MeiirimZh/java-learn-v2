@@ -1,4 +1,4 @@
-import { Lecture } from "../../types";
+import { Lecture } from "../../../types";
 
 const description = `
 Начни свой путь в программировании с Java вместе с JavaRush! 

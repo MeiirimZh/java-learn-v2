@@ -1,4 +1,4 @@
-import { Lecture } from "../../types";
+import { Lecture } from "../../../types";
 
 const description = `
 Мы попали в Хогвардс? Нет, друзья, это Гарвард и вводная неделя CS50! Даже на самых первых занятиях 

@@ -1,6 +1,7 @@
 import { SQLiteProvider } from "expo-sqlite";
 
 import * as LecturesRuQueries from "./queries/LecturesRuQueries";
+import * as LecturesKzQueries from "./queries/LecturesKzQueries";
 import * as CoursesQueries from "./queries/CoursesQueries";
 import * as PdfQueries from "./queries/PdfQueries";
 import * as LabWorksQueries from "./queries/LabWorksQueries";
@@ -8,6 +9,7 @@ import * as TestsQueries from "./queries/TestsQueries";
 
 import { courses } from "../../assets/materials/courses";
 import { lectures_ru } from "../../assets/materials/lectures_ru";
+import { lectures_kz } from "../../assets/materials/lectures_kz";
 import { pdf } from "../../assets/materials/pdf";
 import { labWorks } from "../../assets/materials/labWorks";
 import { tests } from "../../assets/materials/tests";
@@ -43,6 +45,20 @@ export default function DatabaseInitializer({ onReady }: Props) {
                 await db.execAsync(LecturesRuQueries.CREATE_TABLE);
                 for (const lecture of lectures_ru) {
                   await db.runAsync(LecturesRuQueries.INSERT, [
+                    lecture.id,
+                    lecture.title,
+                    lecture.course_id,
+                    lecture.level,
+                    lecture.number,
+                    lecture.description,
+                    lecture.content
+                  ]);
+                }
+
+                await db.execAsync(LecturesKzQueries.DROP_TABLE);
+                await db.execAsync(LecturesKzQueries.CREATE_TABLE);
+                for (const lecture of lectures_kz) {
+                  await db.runAsync(LecturesKzQueries.INSERT, [
                     lecture.id,
                     lecture.title,
                     lecture.course_id,

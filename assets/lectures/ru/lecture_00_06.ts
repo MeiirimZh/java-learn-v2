@@ -1,4 +1,4 @@
-import { Lecture } from "../../types";
+import { Lecture } from "../../../types";
 
 const description = `
 Итак, Scratch. Об этом визуальном языке программирования и его основных командах 

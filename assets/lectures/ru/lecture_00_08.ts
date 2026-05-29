@@ -1,4 +1,4 @@
-import { Lecture } from "../../types";
+import { Lecture } from "../../../types";
 
 const description = `
 Пришла пора сделать первое задание, и делать его мы будем на языке Scratch! 

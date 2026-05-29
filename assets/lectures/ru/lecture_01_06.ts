@@ -1,4 +1,4 @@
-import { Lecture } from "../../types";
+import { Lecture } from "../../../types";
 
 const description = `
 В этой итоговой лекции первого уровня вы узнаете, почему Java — один из самых 

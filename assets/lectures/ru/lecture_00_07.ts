@@ -1,4 +1,4 @@
-import { Lecture } from "../../types";
+import { Lecture } from "../../../types";
 
 const description = `
 В этой лекции вы найдёте краткое руководство по языку Scratch. Главный объект 

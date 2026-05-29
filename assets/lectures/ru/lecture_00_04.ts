@@ -1,4 +1,4 @@
-import { Lecture } from "../../types";
+import { Lecture } from "../../../types";
 
 const description = `
 Мы выяснили, что компьютер понимает только нулики и единички, а его 

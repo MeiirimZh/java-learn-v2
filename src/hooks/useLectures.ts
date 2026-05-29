@@ -36,7 +36,7 @@ const useLectures = (lang: Language) => {
 
     useEffect(() => {
         loadLectures();
-    }, []);
+    }, [lang]);
 
     return { lectures, setLectures, loading };
 };

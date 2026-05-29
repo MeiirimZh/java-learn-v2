@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { StyleSheet, View, FlatList, ActivityIndicator } from "react-native";
 import LectureCard from "../../../components/LectureCard";
@@ -15,16 +16,34 @@ import { useAuth } from "../../context/AuthContext";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 
+import { Language } from "../../../types";
+
 type Props = StackScreenProps<LecturesStackParamList, "LecturesList">;
 
 export default function LecturesList({ navigation }: Props) {
-    const { lectures } = useLectures("ru");
+    const [ lang, setLang ] = useState<Language>("ru");
+    const { lectures } = useLectures(lang);
     const { courses } = useCourses();
 
     const [ passedLectures, setPassedLectures ] = useState<number[]>([]);
     const [ loading, setLoading ] = useState<boolean>(true);
 
     const { user } = useAuth();
+
+    useEffect(() => {
+        const getAndSetLang = async () => {
+            const result = await AsyncStorage.getItem("lang") ?? "ru";
+            
+            if (result === "ru" || result === "kz") {
+                setLang(result);
+            }
+            else {
+                setLang("ru");
+            }
+        }
+
+        getAndSetLang();
+    }, []);
 
     useEffect(() => {
         if (!user) return;

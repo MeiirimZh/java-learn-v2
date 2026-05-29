@@ -1,4 +1,4 @@
-import { Lecture } from "../../types";
+import { Lecture } from "../../../types";
 
 const description = `
 В этой лекции вы познакомитесь с командами вывода на экран в Java: System.out.println и System.out.print. 

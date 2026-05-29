@@ -1,4 +1,4 @@
-import { Lecture } from "../../types"
+import { Lecture } from "../../../types"
 
 const description = `
 Признанный одним из лучших в мире, CS50 — курс Гарвардского университета по 
