@@ -1,3 +1,4 @@
+// Экран списка лабораторных работ
 import { useState, useEffect } from "react";
 
 import { StyleSheet, View, FlatList, ActivityIndicator } from "react-native";

@@ -1,3 +1,4 @@
+// Навигатор экранов лекций
 import { createStackNavigator } from "@react-navigation/stack";
 import { LecturesStackParamList } from "../../navigation/types";
 

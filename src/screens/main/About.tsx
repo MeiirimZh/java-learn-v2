@@ -1,3 +1,5 @@
+// Экран "Об учебнике"
+
 import { StyleSheet, View, ScrollView, Image } from "react-native";
 import AppText from "../../../components/AppText";
 import HorizontalDivider from "../../../components/HorizontalDivider";

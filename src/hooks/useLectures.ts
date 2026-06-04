@@ -1,3 +1,5 @@
+// Загружает лекции выбранного языка из локальной SQLite-базы данных и отслеживает состояние загрузки
+// Автоматически обновляет список лекций при смене языка
 import { useState, useEffect } from "react";
 import { useSQLiteContext } from "expo-sqlite";
 

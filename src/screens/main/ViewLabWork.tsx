@@ -1,3 +1,4 @@
+// Экран просмотра лабораторной работы
 import { useState, useLayoutEffect, useEffect } from "react";
 
 import { StyleSheet, View, TouchableOpacity } from "react-native";

@@ -1,3 +1,4 @@
+// Экран просмотра лекции
 import { useLayoutEffect, useEffect, useState } from "react";
 import { StyleSheet, View, ScrollView, TouchableOpacity } from "react-native";
 import AppText from "../../../components/AppText";

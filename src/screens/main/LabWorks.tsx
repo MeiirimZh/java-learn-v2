@@ -1,3 +1,4 @@
+// Навигатор экранов лабораторных работ
 import { createStackNavigator } from "@react-navigation/stack";
 import { LabWorksStackParamList } from "../../navigation/types";
 

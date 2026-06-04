@@ -1,3 +1,5 @@
+// Настраивает нижнюю навигацию приложения с основными разделами и иконками
+// Определяет внешний вид вкладок и заголовков экранов
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Home from "../screens/main/Home";

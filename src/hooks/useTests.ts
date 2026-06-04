@@ -1,3 +1,5 @@
+// Загружает список тестов из локальной SQLite-базы данных и отслеживает состояние загрузки
+// Возвращает данные тестов и инструменты для управления их состоянием
 import { useState, useEffect } from "react";
 import { useSQLiteContext } from "expo-sqlite";
 

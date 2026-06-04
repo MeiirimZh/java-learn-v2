@@ -1,3 +1,5 @@
+// Инициализирует локальную SQLite-базу данных и заполняет её учебными материалами
+// Отображает экран загрузки до завершения подготовки базы данных
 import { SQLiteProvider } from "expo-sqlite";
 
 import * as LecturesRuQueries from "./queries/LecturesRuQueries";

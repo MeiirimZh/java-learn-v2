@@ -1,3 +1,5 @@
+// Загружает список PDF-файлов из локальной SQLite-базы данных и отслеживает процесс загрузки
+// Предоставляет данные PDF и методы для управления их состоянием
 import { useState, useEffect } from "react";
 import { useSQLiteContext } from "expo-sqlite";
 

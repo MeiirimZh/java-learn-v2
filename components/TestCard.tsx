@@ -1,3 +1,4 @@
+// Карточка для отображения теста
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { useWindowDimensions } from "react-native";
 import AppText from "./AppText";

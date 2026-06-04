@@ -1,3 +1,5 @@
+// Загружает список курсов из локальной SQLite-базы данных и отслеживает состояние загрузки
+// Предоставляет данные курсов и методы для их обновления через кастомный хук
 import { useState, useEffect } from "react";
 import { useSQLiteContext } from "expo-sqlite";
 

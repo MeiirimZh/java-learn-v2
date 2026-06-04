@@ -1,3 +1,5 @@
+// Управляет аутентификацией пользователей через Firebase и хранит данные авторизации в контексте.
+// Предоставляет методы входа, регистрации и выхода для всего приложения.
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, User } from "firebase/auth";
 import { auth } from "../firebase/firebase";

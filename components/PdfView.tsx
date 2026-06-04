@@ -1,3 +1,4 @@
+// Отображает PDF-файл из Google Drive во встроенном WebView с индикатором загрузки
 import { View, ActivityIndicator } from 'react-native';
 import AppText from './AppText';
 import { WebView } from 'react-native-webview';

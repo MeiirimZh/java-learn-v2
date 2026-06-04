@@ -1,3 +1,4 @@
+// Отображает горизонтальный разделитель для визуального отделения элементов интерфейса
 import { StyleSheet, View, StyleProp, ViewStyle } from "react-native";
 
 import { theme } from "../src/theme";

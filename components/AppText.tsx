@@ -1,3 +1,4 @@
+// Компонент-обёртка над Text с автоматически применяемым шрифтом приложения
 import { Text, TextProps, StyleSheet } from 'react-native';
 import { theme } from '../src/theme';
 

@@ -1,3 +1,5 @@
+// Инициализирует Firebase и настраивает сервисы аутентификации и базы данных Firestore
+// Экспортирует готовые экземпляры auth и db для использования в приложении
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";

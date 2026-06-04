@@ -1,3 +1,4 @@
+// Отображает круговую диаграмму прогресса и статистику прохождения учебных материалов
 import { StyleSheet, View } from "react-native";
 import AppText from "./AppText";
 import * as Progress from "react-native-progress";

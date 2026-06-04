@@ -1,3 +1,4 @@
+// Экран профиля
 import { useState, useEffect } from "react";
 
 import { StyleSheet, View, TouchableOpacity, ActivityIndicator } from "react-native";

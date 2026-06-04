@@ -1,3 +1,4 @@
+// Экран "Информация"
 import { StyleSheet, View, StatusBar, Image, ScrollView } from "react-native";
 import AppText from "../../../components/AppText";
 import HorizontalDivider from "../../../components/HorizontalDivider";

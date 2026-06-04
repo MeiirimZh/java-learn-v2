@@ -1,3 +1,4 @@
+// Экран тестов
 import { useState, useEffect } from "react";
 
 import { StyleSheet, View, FlatList, Linking, ActivityIndicator } from "react-native";

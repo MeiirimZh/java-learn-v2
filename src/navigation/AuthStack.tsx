@@ -1,3 +1,4 @@
+// Настраивает стек навигации для экранов авторизации приложения
 import { createStackNavigator } from "@react-navigation/stack";
 import { AuthStackParamList } from "./types";
 
