@@ -4,7 +4,7 @@ export type LecturesStackParamList = {
     LecturesList: undefined,
     ViewLecture: {
         lecture: Lecture
-    }
+    },
     Task1: undefined,
     Task2: undefined,
     Task3: undefined,
@@ -22,7 +22,22 @@ export type LabWorksStackParamList = {
     LabWorksList: undefined,
     ViewLabWork: {
         labWork: LabWork
-    }
+    },
+    Task1: undefined,
+    Task2: undefined,
+    Task3: undefined,
+    Task4: undefined,
+    Task5: undefined,
+    Task6: undefined,
+    Task7: undefined,
+    Task8: undefined,
+    Task9: undefined,
+    Task10: undefined,
+    Task11: undefined,
+    Task12: undefined,
+    Task13: undefined,
+    Task14: undefined,
+    Task15: undefined
 };
 
 export type AuthStackParamList = {

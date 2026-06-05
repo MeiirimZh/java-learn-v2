@@ -20,6 +20,41 @@ import { db } from "../../firebase/firebase";
 
 type Props = StackScreenProps<LabWorksStackParamList, "ViewLabWork">;
 
+type TaskScreen =
+    | "Task1"
+    | "Task2"
+    | "Task3"
+    | "Task4"
+    | "Task5"
+    | "Task6"
+    | "Task7"
+    | "Task8"
+    | "Task9"
+    | "Task10"
+    | "Task11"
+    | "Task12"
+    | "Task13"
+    | "Task14"
+    | "Task15";
+
+const tasks: Record<number, TaskScreen> = {
+    1: "Task1",
+    2: "Task2",
+    3: "Task3",
+    4: "Task4",
+    5: "Task5",
+    6: "Task6",
+    7: "Task7",
+    8: "Task8",
+    9: "Task9",
+    10: "Task10",
+    11: "Task11",
+    12: "Task12",
+    13: "Task13",
+    14: "Task14",
+    15: "Task15"
+};
+
 export default function ViewLabWork({ route, navigation }: Props) {
     const { labWork } = route.params;
     const { pdf } = usePdf();
@@ -75,12 +110,16 @@ export default function ViewLabWork({ route, navigation }: Props) {
             <PdfView fileId={ pdfFile.file_id } />
 
             {!haveRead && (
-                <View style={{ padding: theme.spacing.sm }}>
-                    <TouchableOpacity style={ styles.readButton } onPress={() => setHaveRead(true)}>
-                        <AppText style={{ color: theme.colors.onPrimary }}>Завершить лабораторную</AppText>
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity style={ styles.button } onPress={() => setHaveRead(true)}>
+                    <AppText style={{ color: theme.colors.onPrimary }}>Завершить лабораторную</AppText>
+                </TouchableOpacity>
             )}
+
+            <TouchableOpacity 
+                style={ styles.button }
+                onPress={() => navigation.navigate(tasks[labWork.id])}>
+                <AppText style={{ color: theme.colors.onPrimary }}>Перейти к заданию</AppText>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -89,9 +128,11 @@ const styles = StyleSheet.create({
     main: {
         flex: 1,
 
+        gap: theme.spacing.md,
+
         padding: theme.spacing.md
     },
-    readButton: {
+    button: {
         justifyContent: 'center',
         alignItems: 'center',
 
